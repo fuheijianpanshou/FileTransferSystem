@@ -1,5 +1,6 @@
 package client.console;
 
+import client.filesystem.FileReceiver;
 import io.netty.channel.Channel;
 import protocal.request.DownFileRequestPacket;
 
@@ -13,7 +14,10 @@ public class DownFileConsoleCommand implements ConsoleCommand{
         if(fileName!=null){
             downFileRequestPacket.setFileName(fileName);
         }
-        channel.writeAndFlush(downFileRequestPacket);
+        new FileReceiver(fileName,channel,downFileRequestPacket).ReceiveFile();
+
+        //channel.writeAndFlush(downFileRequestPacket);
+
         waitForResponse();
     }
     private void waitForResponse() {

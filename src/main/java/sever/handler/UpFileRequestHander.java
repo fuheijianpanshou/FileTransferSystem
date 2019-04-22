@@ -21,7 +21,7 @@ public class UpFileRequestHander extends SimpleChannelInboundHandler<UpFileRequs
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, UpFileRequstPacket upFileRequstPacket) throws Exception {
         UpFileResponsePacket upFileResponsePacket=new UpFileResponsePacket();
         upFileResponsePacket.setFileName(upFileRequstPacket.getFileName());
-        UdpServer udpServer=new UdpServer("192.168.43.186",8001,8002, Config.serverFileRootPath+"\\"+upFileRequstPacket.getFileName());
+        UdpServer udpServer=new UdpServer("127.0.0.1",8001,8002, Config.serverFileRootPath+"\\"+upFileRequstPacket.getFileName());
         executor.execute(udpServer);
         upFileResponsePacket.setReady(true);
         channelHandlerContext.writeAndFlush(upFileResponsePacket);

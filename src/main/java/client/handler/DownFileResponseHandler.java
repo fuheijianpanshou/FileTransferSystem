@@ -12,9 +12,13 @@ import java.io.FileOutputStream;
 public class DownFileResponseHandler extends SimpleChannelInboundHandler<DownFileResponsePacket> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, DownFileResponsePacket downFileResponsePacket) throws Exception {
-        if(downFileResponsePacket.isSuccess()){
-            byte2File(downFileResponsePacket.getFile(),Config.clientFileRootPath,downFileResponsePacket.getFileName());
-            System.out.println("yes");
+        if(downFileResponsePacket.isSuccess()&&downFileResponsePacket.getStatus()==1){
+//            byte2File(downFileResponsePacket.getFile(),Config.clientFileRootPath,downFileResponsePacket.getFileName());
+            System.out.println("文件正在下载！");
+        }else if (downFileResponsePacket.isSuccess()&&downFileResponsePacket.getStatus()==2){
+            System.out.println("文件下载完成！");
+        }else if (downFileResponsePacket.isSuccess()&&downFileResponsePacket.getStatus()==0){
+            System.out.println("发生未知错误！");
         }else {
             System.out.println("文件下载失败！");
         }
@@ -58,6 +62,9 @@ public class DownFileResponseHandler extends SimpleChannelInboundHandler<DownFil
             }
         }
     }
+
+
+
 
 
 }

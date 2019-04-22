@@ -11,7 +11,7 @@ public class UpFileResponseHandler extends SimpleChannelInboundHandler<UpFileRes
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, UpFileResponsePacket upFileResponsePacket) throws Exception {
         if(upFileResponsePacket.isReady()){
             waitForResponse();
-            UdpSender udpSender=new UdpSender(8001,8002, Config.clientFileRootPath+"\\"+upFileResponsePacket.getFileName(),"192.168.43.186");
+            UdpSender udpSender=new UdpSender(8001,8002, Config.clientFileRootPath+"\\"+upFileResponsePacket.getFileName(),"127.0.0.1");
             udpSender.run();
         }else {
             System.out.println("服务器就绪失败！");

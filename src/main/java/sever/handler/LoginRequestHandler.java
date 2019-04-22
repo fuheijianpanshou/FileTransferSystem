@@ -13,7 +13,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         String userName=loginRequestPacket.getUserName();
         String userPassword=loginRequestPacket.getUserPassword();
         LoginResponsePacket loginResponsePacket=new LoginResponsePacket();
-        if(userName.equals("root")&&userPassword.equals("123456")){
+        if(userName.equals("root")&&userPassword.equals("root")){
             SessionUtil.bindSession(new Session(userName,userPassword),channelHandlerContext.channel());
             loginResponsePacket.setSuccess(true);
             loginResponsePacket.setUserName(userName);
