@@ -24,18 +24,7 @@ public class DownFileRequestHandler extends SimpleChannelInboundHandler<DownFile
         System.out.println("开始传输"+downFileRequestPacket.getFileName());
         waitForResponse();
         SenderFile(fileName,downFileRequestPacket,channelHandlerContext);
-       // byte[] files=file2Byte(fileName);
-//        DownFileResponsePacket downFileResponsePacket=new DownFileResponsePacket();
-//        if(files.length>0){
-//            downFileResponsePacket.setSuccess(true);
-//            downFileResponsePacket.setFileLength(files.length);
-//            downFileResponsePacket.setFileName(downFileRequestPacket.getFileName());
-//            downFileResponsePacket.setFile(files);
-//            System.out.println("传输文件"+downFileRequestPacket.getFileName());
-//        }else {
-//            downFileResponsePacket.setSuccess(false);
-//        }
-       // channelHandlerContext.writeAndFlush(downFileResponsePacket);
+
 
 
     }
